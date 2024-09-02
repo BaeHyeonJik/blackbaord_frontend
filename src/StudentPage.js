@@ -24,7 +24,7 @@ function StudentPage() {
 
   const fetchStudentLectures = async (userInfo) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/getStudentLectures/${userInfo.id}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/getStudentLectures/${userInfo.id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ function StudentPage() {
 
   const handleUnregisterClick = async (lectureId) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/deleteRegister/${lectureId}/${student.id}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/deleteRegister/${lectureId}/${student.id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

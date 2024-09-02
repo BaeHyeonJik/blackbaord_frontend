@@ -41,7 +41,7 @@ const SignupPage = () => {
       setErrors(validationErrors);
     } else {
       try {
-        const data = await fetch('http://localhost:8080/api/signup', {
+        const data = await fetch(`${process.env.REACT_APP_API_URL}/signup`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

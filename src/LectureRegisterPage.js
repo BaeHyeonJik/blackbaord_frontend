@@ -9,7 +9,7 @@ function LectureRegisterPage() {
 
   const fetchAllLectures = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/api/getAllLectures`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/getAllLectures`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ function LectureRegisterPage() {
     }
 
     try {
-      const response = await fetch('http://localhost:8080/api/insertRegister', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/insertRegister`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

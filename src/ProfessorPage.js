@@ -23,7 +23,7 @@ function ProfessorPage() {
     const fetchData = async () => {
       try {
         const lectureResponse = await fetch(
-          `http://localhost:8080/api/getProfessorLectures/${userInfo.id}`,
+          `${process.env.REACT_APP_API_URL}/getProfessorLectures/${userInfo.id}`,
           {
             method: 'GET',
             headers: {

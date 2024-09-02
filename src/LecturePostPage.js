@@ -27,7 +27,7 @@ function LecturePostPage() {
 
   const fetchBoardPosts = async (lectureId) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/getProfessorLecturePosts/${lectureId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/getProfessorLecturePosts/${lectureId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ function LecturePostPage() {
     }
 
     try {
-      const response = await fetch('http://localhost:8080/api/insertLecturePost', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/insertLecturePost`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ function LecturePostPage() {
   const handleDeletePost = async (postId) => {
     try {
       console.log(postId);
-      const response = await fetch(`http://localhost:8080/api/deleteLecturePost/${postId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/deleteLecturePost/${postId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
