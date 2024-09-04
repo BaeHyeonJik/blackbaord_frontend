@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 function LecturePostPage() {
   const [userInfo, setUserInfo] = useState(null);
@@ -66,7 +68,7 @@ function LecturePostPage() {
           prof_id: userInfo.id,
           lecture_id: lectureInfo.id,
           post_title: postTitle,
-          content: boardContent,
+          content: boardContent, // Rich Text 데이터
         }),
       }).then((response) => response.json());
       if (response.statusCode === 200) {
@@ -120,13 +122,13 @@ function LecturePostPage() {
         placeholder="제목을 입력하세요"
       />
       <br/>
-      <textarea
+      <ReactQuill
         value={boardContent}
-        onChange={(e) => setBoardContent(e.target.value)}
+        onChange={setBoardContent}
         placeholder="게시글을 입력하세요"
-        rows="4"
-        cols="50"
-      ></textarea>
+        modules={modules}
+        formats={formats}
+      />
       <br />
       <button onClick={handlePostSubmit}>게시글 작성</button>
 
@@ -146,7 +148,7 @@ function LecturePostPage() {
             <tr key={post.board_id}>
               <td>{post.name}</td>
               <td>{post.post_title}</td>
-              <td>{post.content}</td>
+              <td dangerouslySetInnerHTML={{ __html: post.content }}></td>
               <td>{post.created_at}</td>
               <td>
                 <button onClick={() => handleDeletePost(post.board_id)}>삭제하기</button>
@@ -158,5 +160,20 @@ function LecturePostPage() {
     </div>
   );
 }
+
+const modules = {
+  toolbar: [
+    [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    ['bold', 'italic', 'underline'],
+    ['link'],
+    [{ 'align': [] }],
+    ['clean']                                         
+  ],
+};
+
+const formats = [
+  'header', 'font', 'list', 'bullet', 'bold', 'italic', 'underline', 'link', 'align', 'clean'
+];
 
 export default LecturePostPage;

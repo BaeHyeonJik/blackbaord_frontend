@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 const LoginPage = () => {
   const [user_id, setId] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const handleIdChange = (e) => {
@@ -19,7 +18,7 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       console.log(user_id, password);
-      const list = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,17 +27,19 @@ const LoginPage = () => {
           user_id,
           password,
         }),
-      }).then((response) => response.json());
+      });
 
-      if (list.statusCode === 200) {
+      const list = await response.json();
+
+      if (response.status === 200) {
         localStorage.setItem('user', JSON.stringify(list.user_Info));
         if (list.user_Info.role === 'student') {
           navigate(`/student/${list.user_Info.name}`);
         } else if (list.user_Info.role === 'professor') {
           navigate(`/professor/${list.user_Info.name}`);
         }
-      } else if (list.statusCode === 409) {
-        setErrorMessage('아이디 혹은 비밀번호를 다시 확인해주세요.');
+      } else if (response.status === 409) {
+        alert('아이디 혹은 비밀번호를 다시 확인해주세요.');
       }
     } catch (err) {
       console.error('Error during login:', err);
@@ -70,9 +71,8 @@ const LoginPage = () => {
           />
         </div>
         <button type="submit">Login</button>
-        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} {/* 오류 메시지 표시 */}
       </form>
-      <button onClick={handleSignupRedirect}>회원가입</button> {/* 회원가입 버튼 추가 */}
+      <button onClick={handleSignupRedirect}>회원가입</button>
     </div>
   );
 };
