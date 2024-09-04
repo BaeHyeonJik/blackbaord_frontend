@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-function LecturePostPage() {
+function MakeLecturePostPage() {
   const [userInfo, setUserInfo] = useState(null);
   const [lectureInfo, setLectureInfo] = useState(null);
   const [boardContent, setBoardContent] = useState('');
@@ -103,7 +103,7 @@ function LecturePostPage() {
   };
 
   const handleBackButtonClick = () => {
-    navigate(`/professor/${userInfo.name}`);
+    navigate(`/professor/course`);
   };
 
   if (loading) {
@@ -176,4 +176,4 @@ const formats = [
   'header', 'font', 'list', 'bullet', 'bold', 'italic', 'underline', 'link', 'align', 'clean'
 ];
 
-export default LecturePostPage;
+export default MakeLecturePostPage;

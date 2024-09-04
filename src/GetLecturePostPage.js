@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function GetLecturePostPage() {
-  const [userInfo, setUserInfo] = useState(null);
   const [lectureInfo, setLectureInfo] = useState(null);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -10,11 +9,9 @@ function GetLecturePostPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedUserInfo = JSON.parse(localStorage.getItem('user'));
     const storedLectureInfo = JSON.parse(localStorage.getItem('lecture'));
 
-    if (storedUserInfo && storedLectureInfo) {
-      setUserInfo(storedUserInfo);
+    if (storedLectureInfo) {
       setLectureInfo(storedLectureInfo);
       fetchBoardPosts(storedLectureInfo.id);
     } else {
@@ -44,7 +41,7 @@ function GetLecturePostPage() {
   };
 
   const handleBackButtonClick = () => {
-    navigate(`/student/${userInfo.name}`);
+    navigate(`/student/course`);
   };
 
   if (loading) {
@@ -70,7 +67,7 @@ function GetLecturePostPage() {
             <tr key={post.id}>
               <td>{post.prof_name}</td>
               <td>{post.post_title}</td>
-              <td>{post.content}</td>
+              <td dangerouslySetInnerHTML={{ __html: post.content }}></td>
               <td>{post.created_at}</td>
             </tr>
           ))}

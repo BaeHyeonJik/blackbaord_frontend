@@ -17,7 +17,6 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(user_id, password);
       const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
         method: 'POST',
         headers: {
@@ -34,9 +33,9 @@ const LoginPage = () => {
       if (response.status === 200) {
         localStorage.setItem('user', JSON.stringify(list.user_Info));
         if (list.user_Info.role === 'student') {
-          navigate(`/student/${list.user_Info.name}`);
+          navigate(`/student/stream`);
         } else if (list.user_Info.role === 'professor') {
-          navigate(`/professor/${list.user_Info.name}`);
+          navigate(`/professor/course`);
         }
       } else if (response.status === 409) {
         alert('아이디 혹은 비밀번호를 다시 확인해주세요.');

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function StudentPage() {
+function StudentCoursePage() {
   const [student, setStudent] = useState(null);
   const [lectures, setLectures] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -43,13 +43,17 @@ function StudentPage() {
     }
   };
 
-  const handleRegisterClick = () => {
-    navigate(`/student/${student.name}/register`);
-  };
-
   const handleLogoutClick = () => {
     localStorage.removeItem('user');
     navigate('/');
+  };
+
+  const handleStreamClick = () => {
+    navigate('/student/stream');
+  };
+  
+  const handleRegisterClick = () => {
+    navigate('/student/register');
   };
 
   const handleViewPostClick = (lecture) => {
@@ -58,7 +62,7 @@ function StudentPage() {
       title: lecture.title
     }));
     
-    navigate(`/student/${student.name}/${lecture.title}/post`);
+    navigate(`/student/course/${lecture.title}/post`);
   };
 
   const handleUnregisterClick = async (lectureId) => {
@@ -88,8 +92,9 @@ function StudentPage() {
   return (
     <div>
       <button onClick={handleLogoutClick}>로그아웃</button>
-      <h1>{student?.name} 학생의 강의 목록</h1>
-      <button onClick={handleRegisterClick}>수강신청하기</button>
+      <button onClick={handleStreamClick}>스트림</button>
+      <button onClick={handleRegisterClick}>수강신청</button>
+      <h1>{student?.name} 학생의 코스</h1>
       <br /><br />
       <table border="1" cellPadding="10" cellSpacing="0">
         <thead>
@@ -121,4 +126,4 @@ function StudentPage() {
   );
 }
 
-export default StudentPage;
+export default StudentCoursePage;

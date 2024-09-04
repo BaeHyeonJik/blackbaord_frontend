@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function ProfessorPage() {
+function ProfessorCoursePage() {
   const [professor, setProfessor] = useState(null);
   const [lectures, setLectures] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -57,7 +57,7 @@ function ProfessorPage() {
       id: lecture.id,
       title: lecture.title
     }));
-    navigate(`/professor/${professor.name}/${lecture.title}`);
+    navigate(`/professor/course/${lecture.title}/post`);
   };
 
   if (loading) {
@@ -67,7 +67,7 @@ function ProfessorPage() {
   return (
     <div>
       <button onClick={handleLogoutClick}>로그아웃</button>
-      <h1>{professor?.name} 교수님 페이지</h1>
+      <h1>{professor?.name} 교수님 코스 목록</h1>
       <table border="1" cellPadding="10" cellSpacing="0">
         <thead>
           <tr>
@@ -94,4 +94,4 @@ function ProfessorPage() {
   );
 }
 
-export default ProfessorPage;
+export default ProfessorCoursePage;

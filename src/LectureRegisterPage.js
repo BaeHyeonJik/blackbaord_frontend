@@ -72,12 +72,16 @@ function LectureRegisterPage() {
     }
   };
 
-  const handleBackClick = () => {
-    if (student) {
-      navigate(`/student/${student.name}`);
-    } else {
-      console.error('Student info is missing');
-    }
+  const handleLogoutClick = () => {
+    localStorage.removeItem('user');
+    navigate('/');
+  };
+
+  const handleStreamClick = () => {
+    navigate('/student/course');
+  };
+  const handleCourseClick = () => {
+    navigate('/student/course');
   };
 
   if (loading) {
@@ -86,8 +90,10 @@ function LectureRegisterPage() {
 
   return (
     <div>
-      <button onClick={handleBackClick}>뒤로가기</button>
-      <h1>강의 목록</h1>
+      <button onClick={handleLogoutClick}>로그아웃</button>
+      <button onClick={handleStreamClick}>스트림</button>
+      <button onClick={handleCourseClick}>코스</button>
+      <h1>수강신청</h1>
       <table border="1" cellPadding="10" cellSpacing="0">
         <thead>
           <tr>
