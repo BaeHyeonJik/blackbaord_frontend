@@ -24,7 +24,6 @@ function StreamPage() {
 
   const fetchStudentPosts = async (userInfo) => {
     try {
-      console.log(userInfo.id);
       const response = await fetch(`${process.env.REACT_APP_API_URL}/getStudentAllLecturePosts/${userInfo.id}`, {
         method: 'GET',
         headers: {

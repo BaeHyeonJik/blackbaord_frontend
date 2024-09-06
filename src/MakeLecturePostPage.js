@@ -85,7 +85,6 @@ function MakeLecturePostPage() {
 
   const handleDeletePost = async (postId) => {
     try {
-      console.log(postId);
       const response = await fetch(`${process.env.REACT_APP_API_URL}/deleteLecturePost/${postId}`, {
         method: 'DELETE',
         headers: {
