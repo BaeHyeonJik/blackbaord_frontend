@@ -6,7 +6,7 @@
 npm ci
 ```
 
-## 2. .env 파일
+## 2. .env 파일(루트 디렉토리에 생성)
 ```
 REACT_APP_API_URL=http://localhost:8080
 ```
