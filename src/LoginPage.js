@@ -37,7 +37,7 @@ const LoginPage = () => {
         } else if (list.user_Info.role === 'professor') {
           navigate(`/professor/course`);
         }
-      } else if (response.status === 409) {
+      } else if (response.status === 401) {
         alert('아이디 혹은 비밀번호를 다시 확인해주세요.');
       }
     } catch (err) {

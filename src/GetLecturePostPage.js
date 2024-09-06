@@ -50,8 +50,8 @@ function GetLecturePostPage() {
 
   return (
     <div>
-      <h1>{lectureInfo.title} 게시물 페이지</h1>
       <button onClick={handleBackButtonClick}>뒤로가기</button>
+      <h1>{lectureInfo.title} 게시물 페이지</h1>
       <h2>게시글 목록</h2>
       <table border="1" cellPadding="10" cellSpacing="0">
         <thead>

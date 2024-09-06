@@ -51,7 +51,11 @@ function StudentCoursePage() {
   const handleStreamClick = () => {
     navigate('/student/stream');
   };
-  
+
+  const handleCourseClick = () => {
+    navigate('/student/course');
+  };
+
   const handleRegisterClick = () => {
     navigate('/student/register');
   };
@@ -93,9 +97,10 @@ function StudentCoursePage() {
     <div>
       <button onClick={handleLogoutClick}>로그아웃</button>
       <button onClick={handleStreamClick}>스트림</button>
+      <button onClick={handleCourseClick}>코스</button>
       <button onClick={handleRegisterClick}>수강신청</button>
       <h1>{student?.name} 학생의 코스</h1>
-      <br /><br />
+      <br />
       <table border="1" cellPadding="10" cellSpacing="0">
         <thead>
           <tr>

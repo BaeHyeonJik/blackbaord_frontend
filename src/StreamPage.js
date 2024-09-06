@@ -48,6 +48,10 @@ function StreamPage() {
     navigate('/');
   };
 
+  const handleStreamClick = () => {
+    navigate('/student/stream');
+  };
+
   const handleCourseClick = () => {
     navigate('/student/course');
   };
@@ -62,10 +66,11 @@ function StreamPage() {
   return (
     <div>
       <button onClick={handleLogoutClick}>로그아웃</button>
+      <button onClick={handleStreamClick}>스트림</button>
       <button onClick={handleCourseClick}>코스</button>
       <button onClick={handleRegisterClick}>수강신청</button>
       <h1>{student?.name} 학생의 스트림</h1>
-      <br /><br />
+      <br/>
       <table border="1" cellPadding="10" cellSpacing="0">
         <thead>
           <tr>

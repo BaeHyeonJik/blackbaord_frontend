@@ -42,7 +42,7 @@ function LectureRegisterPage() {
     }
   }, []);
 
-  const handleRegisterClick = async (lectureId) => {
+  const handleRegisterLectureClick = async (lectureId) => {
     if (!student) {
       console.error('Student info is missing');
       return;
@@ -61,9 +61,10 @@ function LectureRegisterPage() {
       }).then((res) => res.json());
 
       if (response.statusCode === 200) {
+        alert('수강신청이 완료되었습니다.');
         fetchAllLectures();
       } else if (response.statusCode === 409) {
-        alert('이미 수강신청된 강의입니다.');
+        alert(`${response.err}`);
       } else {
         console.error('Failed to enroll:', response.err);
       }
@@ -80,8 +81,13 @@ function LectureRegisterPage() {
   const handleStreamClick = () => {
     navigate('/student/course');
   };
+
   const handleCourseClick = () => {
     navigate('/student/course');
+  };
+
+  const handleRegisterClick = () => {
+    navigate('/student/register');
   };
 
   if (loading) {
@@ -93,7 +99,9 @@ function LectureRegisterPage() {
       <button onClick={handleLogoutClick}>로그아웃</button>
       <button onClick={handleStreamClick}>스트림</button>
       <button onClick={handleCourseClick}>코스</button>
+      <button onClick={handleRegisterClick}>수강신청</button>
       <h1>수강신청</h1>
+      <br/>
       <table border="1" cellPadding="10" cellSpacing="0">
         <thead>
           <tr>
@@ -114,13 +122,9 @@ function LectureRegisterPage() {
               <td>{lecture.studentnum} / {lecture.limitednum}</td>
               <td>{lecture.status}</td>
               <td>
-                {lecture.status === '모집중' ? (
-                  <button onClick={() => handleRegisterClick(lecture.id)}>
+                  <button onClick={() => handleRegisterLectureClick(lecture.id)}>
                     수강신청
                   </button>
-                ) : (
-                  <span>마감</span>
-                )}
               </td>
             </tr>
           ))}
