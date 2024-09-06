@@ -20,3 +20,5 @@ REACT_APP_API_URL=http://localhost:8080
 ```bash
 npm run start
 ```
+
+## 4. backend 파일도 clone해서 절차 진행 후 실행(함께 실행하면 됩니다!)
