@@ -26,15 +26,13 @@ const LoginPage = () => {
           user_id,
           password,
         }),
-      });
+      }).then((response) => response.json());
 
-      const list = await response.json();
-
-      if (response.status === 200) {
-        localStorage.setItem('user', JSON.stringify(list.user_Info));
-        if (list.user_Info.role === 'student') {
+      if (response.statusCode === 200) {
+        localStorage.setItem('user', JSON.stringify(response.user_Info));
+        if (response.user_Info.role === 'student') {
           navigate(`/student/stream`);
-        } else if (list.user_Info.role === 'professor') {
+        } else if (response.user_Info.role === 'professor') {
           navigate(`/professor/course`);
         }
       } else if (response.status === 401) {
