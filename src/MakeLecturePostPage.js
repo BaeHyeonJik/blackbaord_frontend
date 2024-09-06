@@ -68,7 +68,7 @@ function MakeLecturePostPage() {
           prof_id: userInfo.id,
           lecture_id: lectureInfo.id,
           post_title: postTitle,
-          content: boardContent, // Rich Text 데이터
+          content: boardContent,
         }),
       }).then((response) => response.json());
       if (response.statusCode === 200) {
