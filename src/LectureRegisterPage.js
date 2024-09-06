@@ -79,7 +79,7 @@ function LectureRegisterPage() {
   };
 
   const handleStreamClick = () => {
-    navigate('/student/course');
+    navigate('/student/stream');
   };
 
   const handleCourseClick = () => {
