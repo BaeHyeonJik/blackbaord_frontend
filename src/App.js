@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginPage from './LoginPage';
 import SignupPage from './SignupPage';
 import ProfessorCoursePage from './ProfessorCoursePage';
+import MakeCoursePage from './MakeCoursePage';
 import MakeLecturePostPage from './MakeLecturePostPage';
 import StreamPage from './StreamPage';
 import StudentCoursePage from './StudentCoursePage';
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/professor/course" element={<ProfessorCoursePage />} />
+          <Route path="/professor/course/make" element={<MakeCoursePage />} />
           <Route path="/professor/course/:course_title/post" element={<MakeLecturePostPage />} />
           <Route path="/student/stream" element={<StreamPage />} />
           <Route path="/student/course" element={<StudentCoursePage />} />

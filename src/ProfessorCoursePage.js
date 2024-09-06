@@ -60,6 +60,10 @@ function ProfessorCoursePage() {
     navigate(`/professor/course/${lecture.title}/post`);
   };
 
+  const handleCreateCourseClick = () => {
+    navigate('/professor/course/make');
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -68,6 +72,7 @@ function ProfessorCoursePage() {
     <div>
       <button onClick={handleLogoutClick}>로그아웃</button>
       <h1>{professor?.name} 교수님 코스 목록</h1>
+      <button onClick={handleCreateCourseClick}>코스 생성하기</button>
       <table border="1" cellPadding="10" cellSpacing="0">
         <thead>
           <tr>

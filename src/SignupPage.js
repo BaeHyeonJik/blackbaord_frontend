@@ -53,6 +53,7 @@ const SignupPage = () => {
         const statusCode = data.statusCode;
 
         if (statusCode === 200) {
+          alert('회원가입이 완료되었습니다.');
           navigate('/');
         } else if (statusCode === 409) {
           setErrors({ submit: '아이디가 중복됩니다.' });
