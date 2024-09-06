@@ -60,6 +60,14 @@ function ProfessorCoursePage() {
     navigate(`/professor/course/${lecture.title}/post`);
   };
 
+  const handleStudentClick = (lecture) => {
+    localStorage.setItem('lecture', JSON.stringify({
+      id: lecture.id,
+      title: lecture.title
+    }));
+    navigate(`/professor/course/${lecture.title}/manage`);
+  };
+
   const handleCreateCourseClick = () => {
     navigate('/professor/course/make');
   };
@@ -80,6 +88,7 @@ function ProfessorCoursePage() {
             <th>학점</th>
             <th>인원 (현재/최대)</th>
             <th>게시물 작성</th>
+            <th>수강학생관리</th>
           </tr>
         </thead>
         <tbody>
@@ -90,6 +99,9 @@ function ProfessorCoursePage() {
               <td>{lecture.studentnum} / {lecture.limitednum}</td>
               <td>
                 <button onClick={() => handlePostClick(lecture)}>게시물 작성</button>
+              </td>
+              <td>
+                <button onClick={() => handleStudentClick(lecture)}>수강학생 목록보기</button>
               </td>
             </tr>
           ))}
