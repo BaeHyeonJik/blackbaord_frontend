@@ -27,7 +27,7 @@ const LoginPage = () => {
           password,
         }),
       }).then((response) => response.json());
-
+      console.log(response.statusCode)
       if (response.statusCode === 200) {
         localStorage.setItem('user', JSON.stringify(response.user_Info));
         if (response.user_Info.role === 'student') {
@@ -35,7 +35,7 @@ const LoginPage = () => {
         } else if (response.user_Info.role === 'professor') {
           navigate(`/professor/course`);
         }
-      } else if (response.status === 401) {
+      } else if (response.statusCode === 401) {
         alert('아이디 혹은 비밀번호를 다시 확인해주세요.');
       }
     } catch (err) {
